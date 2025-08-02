@@ -1,0 +1,71 @@
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 0vw 10vw;
+}
+.boxbtn{
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px ;
+    justify-content: center;
+    align-items: center;
+}
+.boxlogres{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid hsl(0 0% 70%);
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    column-gap: 10px;
+}
+
+.btnhome{
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    border: 1px solid;
+    border-radius: 6px;
+    padding: 10px 15px;
+}
+.btnlogin{
+    text-decoration: none;
+    color: black;
+    border: 1px solid none;
+    border-radius: 6px;
+    padding: 10px 15px;
+}
+.btnregister{
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    border: 1px solid;
+    border-radius: 6px;
+    padding: 10px 15px;
+}
+.btncontact{
+    text-decoration: none;
+    color: black;
+    border: 1px solid none;
+    border-radius: 6px;
+    padding: 10px 15px;
+}
+
+.hero{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    margin: 0vw 10vw;
+}
+.head{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
