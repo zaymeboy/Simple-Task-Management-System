@@ -2,7 +2,7 @@ import '../Style/Home.css';
 function Homepage(){
     return (
         <div>
-            <nav>
+            <nav className='big'>
                 <a href="homepage" className='btnhome'>Simple Task Management System</a>
                 <div className='boxbtn'>
                     <div className='boxlogres'>

@@ -25,7 +25,7 @@ function Login(){
                         <input type="email" id="email" name="email" value={email} onChange={(e)=> setEmail(e.target.value)}/>          
                         <label htmlFor='password'>Password</label>
                         <input type="password" id="password" name="password" value={password} onChange={(e)=> setPassword(e.target.value)} />
-                        <button type='submit'>Login</button>
+                        <button type='submit' className='btn'>Login</button>
                     </form>
                 </div>
             </div>        

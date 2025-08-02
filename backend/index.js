@@ -1,20 +1,34 @@
+//Import segala barang
 const express = require('express');
-const cors = require('cors');
-const { timeStamp } = require('console');
-
 const app = express();
-const PORT = process.env.PORT || 5000;
+const dotenv = require('dotenv');
+const connectDB = require('./config/database');
+const userRoutes = require('./routes/userRoutes');
 
+//taktau jangan buang
+const cors = require('cors');
+
+//Load environment variable
+dotenv.config();
+
+//taktau jangan buang
 app.use(cors());
+
+//Connect to DB
+connectDB();
+
+//Middleware
 app.use(express.json());
 
-app.get('/test' , (req,res)=>{
-    const data = {
-      message: 'Ini Test kalau nampak dapat' 
-    };
-    res.json(data);
+//API Routes
+app.use('/user', userRoutes);
+
+//cth API
+app.get('/', (req,res)=>{
+  res.send("API is running...")
 });
 
+const PORT = process.env.PORT || 5000;
 app.listen(PORT , ()=>{
     console.log(`Server is running on http://localhost:${PORT}`);
 })

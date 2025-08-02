@@ -26,3 +26,11 @@
 .h2custom{
     margin: 0px;
 }
+.btn{
+    all:unset;
+    background-color: black;
+    color: white;
+    border: 1px solid;
+    border-radius: 6px;
+    padding: 10px 15px;
+}

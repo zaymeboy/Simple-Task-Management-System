@@ -6,6 +6,7 @@ import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 function Register(){
+    const [username , setUsername]= useState('');
     const [email, setEmail]=useState('');
     const [con_email, setConEmail]=useState('');
     const [password, setPassword]=useState('');
@@ -21,14 +22,16 @@ function Register(){
             <div className="container">
                 <div className='formbox'>
                     <h2 className='h2custom'>Sign Up</h2>
-                    <form className='form' onSubmit={handleSubmit}>              
+                    <form className='form' onSubmit={handleSubmit}>  
+                        <label htmlFor='username'>Username</label>
+                        <input type="username" id="username" name="username" value={username} onChange={(e)=> setUsername(e.target.value)}/>            
                         <label htmlFor='email'>Email</label>
                         <input type="email" id="email" name="email" value={email} onChange={(e)=> setEmail(e.target.value)}/>
                         <label htmlFor='email'>Confirm Email</label>
                         <input type="email" id="con_email" name="con_email" value={con_email} onChange={(e)=> setConEmail(e.target.value)}/>         
                         <label htmlFor='password'>Password</label>
                         <input type="password" id="password" name="password" value={password} onChange={(e)=> setPassword(e.target.value)} />
-                        <button type='submit'>Sign Up</button>
+                        <button type='submit' className='btn'>Sign Up</button>
                     </form>
                 </div>
             </div>    
