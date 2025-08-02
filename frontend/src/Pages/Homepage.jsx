@@ -1,5 +1,22 @@
 import '../Style/Home.css';
+import React, {useState,useEffect} from 'react';
+import LoadingScreen from '../Component/Loading';
+
 function Homepage(){
+    //untuk loadingscreen
+    const [isLoading, setIsLoading]= useState(true);
+
+    //use effect untuk run die
+    useEffect(()=>{
+        const timer = setTimeout(()=>{
+            setIsLoading(false);
+        },1500);
+        return ()=>clearTimeout(timer);
+    },[]);
+    if (isLoading){
+        return <LoadingScreen/>
+    }
+
     return (
         <div>
             <nav className='big'>

@@ -41,7 +41,11 @@ nav{
 }
 .btnregister{
     text-decoration: none;
-    background-color: black;
+    background: linear-gradient(
+    to right,
+    #b700ff,
+    #ff005d
+    );
     color: white;
     border: 1px solid;
     border-radius: 6px;

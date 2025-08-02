@@ -1,11 +1,14 @@
 import { use } from 'react';
 import '../Style/Default.css';
 import '../Style/Form.css';
+import React, {useState,useEffect} from 'react';
+import LoadingScreen from '../Component/Loading';
 
-import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 function Register(){
+    //untuk loadingscreen
+    const [isLoading, setIsLoading]= useState(true);
     const [username , setUsername]= useState('');
     const [email, setEmail]=useState('');
     const [con_email, setConEmail]=useState('');
@@ -18,6 +21,16 @@ function Register(){
         navigate('/login');
 
     };
+    //use effect untuk run die
+    useEffect(()=>{
+        const timer = setTimeout(()=>{
+            setIsLoading(false);
+        },1500);
+        return ()=>clearTimeout(timer);
+    },[]);
+    if (isLoading){
+        return <LoadingScreen/>
+    }
     return (
             <div className="container">
                 <div className='formbox'>

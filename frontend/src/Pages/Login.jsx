@@ -1,14 +1,30 @@
 import { use } from 'react';
 import '../Style/Default.css';
 import '../Style/Form.css';
+import React, {useState,useEffect} from 'react';
+import LoadingScreen from '../Component/Loading';
 
-import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 function Login(){
+    //untuk loadingscreen
+    const [isLoading, setIsLoading]= useState(true);
     const [email, setEmail]=useState('');
     const [password, setPassword]=useState('');
     const navigate = useNavigate();
+
+    //use effect untuk run die
+    useEffect(()=>{
+        const timer = setTimeout(()=>{
+            setIsLoading(false);
+        },1500);
+        return ()=>clearTimeout(timer);
+    },[]);
+    if (isLoading){
+        return <LoadingScreen/>
+    }
+
+    
 
     const handleSubmit= (event)=>{
         event.preventDefault();
