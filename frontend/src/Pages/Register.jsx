@@ -6,20 +6,47 @@ import LoadingScreen from '../Component/Loading';
 
 import { useNavigate } from 'react-router-dom';
 import Nav1 from '../Component/Nav1';
+import axios  from 'axios';
 
 function Register() {
     //untuk loadingscreen
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [con_email, setConEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async(event) => {
         event.preventDefault();
-        console.log(email, con_email, password);
-        navigate('/login');
+        //console.log(email, username, password);
+        //navigate('/login');
+        setIsLoading(true);
+
+        const data = {
+            username: username,
+            email: email,
+            password: password,
+        }
+        
+        try {
+            const res = await axios.post('http://localhost:5000/user/register', data);
+            console.log('Success:', res.data);
+            navigate('/login');
+        } catch (err) {
+            if (err.response) {
+                console.error('Error Status:', err.response.status);
+                console.error('Error Data:', err.response.data);
+                console.error('Error Headers:', err.response.headers);
+            } else if (err.request) {
+                console.error('No response received:', err.request);
+            } else {
+                console.error('Error Message:', err.message);
+            }
+            console.error('Error Config:', err.config);
+        }finally{
+            setIsLoading(false);
+        }
 
     };
     //use effect untuk run die
@@ -43,8 +70,6 @@ function Register() {
                         <input type="username" id="username" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
                         <label htmlFor='email'>Email</label>
                         <input type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                        <label htmlFor='email'>Confirm Email</label>
-                        <input type="email" id="con_email" name="con_email" value={con_email} onChange={(e) => setConEmail(e.target.value)} />
                         <label htmlFor='password'>Password</label>
                         <input type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                         <div className='btnspan'><button type='submit' className='btn'>Sign Up</button></div>
