@@ -3,8 +3,8 @@ import '../Style/Default.css';
 import '../Style/Form.css';
 import React, {useState,useEffect} from 'react';
 import LoadingScreen from '../Component/Loading';
-
 import {useNavigate} from 'react-router-dom';
+import Nav1 from '../Component/Nav1';
 
 function Login(){
     //untuk loadingscreen
@@ -33,6 +33,8 @@ function Login(){
 
     };
     return (
+        <div>
+            <Nav1 btnname="Sign Up" link="Register" message="Don't have an account?"/>
             <div className="container">
                 <div className='formbox'>
                     <h2 className='h2custom'>Login</h2>
@@ -41,10 +43,11 @@ function Login(){
                         <input type="email" id="email" name="email" value={email} onChange={(e)=> setEmail(e.target.value)}/>          
                         <label htmlFor='password'>Password</label>
                         <input type="password" id="password" name="password" value={password} onChange={(e)=> setPassword(e.target.value)} />
-                        <button type='submit' className='btn'>Login</button>
+                        <div className='btnspan'><button type='submit' className='btn'>Login</button></div>
                     </form>
                 </div>
-            </div>        
+            </div>
+        </div>        
     )
 }
 export default Login;

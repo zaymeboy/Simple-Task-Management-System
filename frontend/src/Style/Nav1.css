@@ -1,0 +1,43 @@
+.nav1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 0px;
+}
+.boxbtn{
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px ;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnhome{
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    border: 1px solid;
+    border-radius: 6px;
+    padding: 10px 15px;
+}
+.btnlogin{
+    text-decoration: none;
+    color: black;
+    border: 1px solid none;
+    border-radius: 6px;
+    padding: 10px 15px;
+}
+.btnregister{
+    text-decoration: none;
+    background: linear-gradient(
+    to right,
+    #b700ff,
+    #ff005d
+    );
+    color: white;
+    border: 1px solid;
+    border-radius: 6px;
+    padding: 10px 15px;
+}
