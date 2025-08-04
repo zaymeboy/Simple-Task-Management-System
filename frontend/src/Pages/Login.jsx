@@ -28,16 +28,16 @@ function Login() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setIsLoading(true)
-        //console.log('email ', { email }, " password: ", { password })
-        //navigate('/dashboard');
+        setIsLoading(true);
         const data = {
             email: email,
             password: password,
         }
         
         try {
-            const res = await axios.post('http://localhost:5000/user/login', data);
+            const res = await axios.post('http://localhost:5000/user/login', data, {
+                withCredentials:true,
+            });
             console.log('Success:', res.data);
             navigate('/dashboard');
         } catch (err) {

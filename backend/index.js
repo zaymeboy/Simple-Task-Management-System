@@ -4,6 +4,7 @@ const app = express();
 const dotenv = require('dotenv');
 const connectDB = require('./config/database');
 const userRoutes = require('./routes/userRoutes');
+const taskRoutes = require('./routes/taskRoutes');
 
 //taktau jangan buang
 const cors = require('cors');
@@ -12,7 +13,10 @@ const cors = require('cors');
 dotenv.config();
 
 //taktau jangan buang
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+}));
 
 //Connect to DB
 connectDB();
@@ -22,6 +26,7 @@ app.use(express.json());
 
 //API Routes
 app.use('/user', userRoutes);
+app.use('/task', taskRoutes);
 
 //cth API
 app.get('/', (req,res)=>{

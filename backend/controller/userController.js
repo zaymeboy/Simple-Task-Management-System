@@ -16,7 +16,7 @@ const generateToken = (id)=>{
 };
 
 //register
-const registerUser = asyncHandler(async (req, res) => {
+const userRegister = asyncHandler(async (req, res) => {
     const { email, username, password } = req.body;    
 
     //check ada ke tidak
@@ -35,12 +35,7 @@ const registerUser = asyncHandler(async (req, res) => {
     if (user) {
         res.status(201).json({
             success: true,
-            message: 'Registration successful!',
-            user: {
-                id: user._id,
-                username: user.username,
-                email: user.email,
-            }
+            message: 'Registration successful!'
         });
     } else {
         res.status(400).json({ success: false, message: 'Invalid user data' });
@@ -58,19 +53,41 @@ const userLogin = asyncHandler(async (req, res) => {
     //check email
     const checkEmail = await User.findOne({email});
     if(checkEmail && (await checkEmail.matchPassword(password))){
+        //buat token
+        const token = generateToken(checkEmail._id);
+
+        //simpan token dalam cookie
+        res.cookie('session_id', token,{
+            httpOnly: true,
+            sameSite: 'strict',
+            // Simple logic for `maxAge` based on a string like '1d' or '60m'
+            maxAge: process.env.JWT_EXPIRES_IN.includes('d') 
+                ? parseInt(process.env.JWT_EXPIRES_IN) * 24 * 60 * 60 * 1000 
+                : parseInt(process.env.JWT_EXPIRES_IN) * 60 * 1000, 
+            secure: process.env.NODE_ENV ==='production'
+        });
+
         res.status(200).json({
             success: true,
             message: 'Login succsessful!',
-            user:{
-                id: checkEmail._id,
-                username: checkEmail.username,
-                email: checkEmail.email,
-            },
-            //pass token ke frontend
-            token: generateToken(checkEmail._id),
+            session_id: token,
         });
     }else {
         res.status(401).json({success:false , message: "Invalid Credentials"})
     }
 });
-module.exports = { registerUser, userLogin };
+
+const getProfile = asyncHandler(async(req, res)=>{
+    if(req.user){
+        res.json({
+            _id: req.user._id,
+            name: req.user.name,
+            email: req.user.email,
+        });
+    }else{
+        res.status(404);
+        throw new Error('User not found');
+    }
+});
+
+module.exports = { userRegister, userLogin , getProfile };
